@@ -62,7 +62,8 @@ class Platforms():
                     "centos": "yum",
                     "ubuntu" : "apt-get",
                     "debian" : "apt-get",
-                    "redhat" : "yum"
+                    "redhat" : "yum",
+                    "opensuse-tumbleweed" : "zypper"
                 }
         self.pkgmgr= pkg_mgr[linux_distribution]
 
