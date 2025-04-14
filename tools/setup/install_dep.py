@@ -128,6 +128,38 @@ dnf_pkg = [ "clang", #libstdc++ is part of clang
             "python3.10"
 ]
 
+zypper_pkg = [ "clang", #libstdc++ is part of clang
+            "gcc",
+            "meson", #ninja build is included in meson
+            "libtool", #autoconf, automake are part of it
+            "google-perftools", # libunwind part of google perftools
+            "libconfig-devel",
+            "libconfig++-devel",
+            "unifdef",
+            "curl",
+            'libffi-devel',
+            'zlib-devel',
+            'libedit-devel',
+            'libexpat-devel'
+            "python3-setuptools",
+            "python3-pip",
+            "python3-wheel",
+            "python3-cffi",
+            "autoconf-archive",
+            "transconnect",
+            "wireshark",
+            "cmake",
+            "libunwind-devel",
+            "glib2-devel",
+            "patch",
+            "python3",
+            "python3-thrift",
+            "python3-six",
+            "python3-protobuf",
+            "scapy",
+            "python3-pyelftools"
+]
+
 
 if lp.pkgmgr == "apt-get":
     for item in apt_packages:
@@ -135,6 +167,11 @@ if lp.pkgmgr == "apt-get":
         print (execute_system_command (install_command)[0])
 if lp.pkgmgr == "dnf" or lp.pkgmgr == "yum":
     for item in dnf_pkg:
+        install_command = ["sudo", "-E", lp.pkgmgr, "install",  "-y", item]
+        print (execute_system_command (install_command)[0])
+if lp.pkgmgr == "zypper":
+    pip_packages = []
+    for item in zypper_pkg:
         install_command = ["sudo", "-E", lp.pkgmgr, "install",  "-y", item]
         print (execute_system_command (install_command)[0])
 
